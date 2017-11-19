@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe{ postList ->
                     run {
-                        Log.d("BRYAN", postList.toString())
                         adapter.postList = postList
                         adapter.notifyDataSetChanged()
                     }
