@@ -17,6 +17,7 @@ class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             Log.d("BRYAN", "Clicked comments. Opening url " + redditPostData.url)
         }
         Markwon.setMarkdown(itemView.reddit_post_text, redditPostData.text.orEmpty())
+        itemView.reddit_post_text.visibility = View.GONE
         itemView.setOnClickListener { view ->
             run {
                 if (itemView.reddit_post_text.visibility == View.VISIBLE) {
