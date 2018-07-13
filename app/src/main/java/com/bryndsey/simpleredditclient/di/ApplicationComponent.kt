@@ -1,6 +1,6 @@
 package com.bryndsey.simpleredditclient.di
 
-import com.bryndsey.simpleredditclient.MainActivity
+import com.bryndsey.simpleredditclient.ui.RedditPostListFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -8,5 +8,5 @@ import javax.inject.Singleton
 @Component(modules = [(NetworkModule::class)])
 interface ApplicationComponent {
 
-    fun inject(mainActivity: MainActivity)
+    fun inject(redditPostListFragment: RedditPostListFragment)
 }
