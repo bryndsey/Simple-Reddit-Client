@@ -13,18 +13,16 @@ class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.reddit_post_title.text = redditPostData.title
         itemView.reddit_post_score.text = redditPostData.score.toString()
         itemView.reddit_post_comments.text = redditPostData.numComments.toString() + " comments"
-        itemView.reddit_post_comments.setOnClickListener { view ->
+        itemView.reddit_post_comments.setOnClickListener {
             Log.d("BRYAN", "Clicked comments. Opening url " + redditPostData.url)
         }
         Markwon.setMarkdown(itemView.reddit_post_text, redditPostData.text.orEmpty())
         itemView.reddit_post_text.visibility = View.GONE
-        itemView.setOnClickListener { view ->
-            run {
-                if (itemView.reddit_post_text.visibility == View.VISIBLE) {
-                    itemView.reddit_post_text.visibility = View.GONE
-                } else {
-                    itemView.reddit_post_text.visibility = View.VISIBLE
-                }
+        itemView.setOnClickListener {
+            if (itemView.reddit_post_text.visibility == View.VISIBLE) {
+                itemView.reddit_post_text.visibility = View.GONE
+            } else {
+                itemView.reddit_post_text.visibility = View.VISIBLE
             }
         }
     }

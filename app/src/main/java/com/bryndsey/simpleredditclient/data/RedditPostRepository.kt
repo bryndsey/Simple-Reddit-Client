@@ -12,9 +12,9 @@ class RedditPostRepository @Inject constructor(val redditService: RedditService)
     fun fetchRedditPosts(): Single<List<RedditPostData>> {
         return redditService.getSubredditPosts()
                 .retry()
-                .map{response -> response.data.posts }
-                .flatMapObservable { list -> Observable.fromIterable(list) }
-                .map { redditPost -> redditPost.data }
+                .map { it.data.posts }
+                .flatMapObservable { Observable.fromIterable(it) }
+                .map { it.data }
                 .toList()
                 .subscribeOn(Schedulers.io())
     }

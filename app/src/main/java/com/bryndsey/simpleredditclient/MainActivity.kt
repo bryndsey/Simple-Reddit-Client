@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
        redditPostRepository.fetchRedditPosts()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ postList -> updatePosts(postList)},
-                        { error -> Toast.makeText(this, "Error occurred fetching posts", Toast.LENGTH_SHORT).show() }
+                        { Toast.makeText(this, "Error occurred fetching posts", Toast.LENGTH_SHORT).show() }
         )
     }
 
