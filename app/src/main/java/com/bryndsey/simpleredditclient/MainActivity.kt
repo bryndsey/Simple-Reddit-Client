@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import com.bryndsey.simpleredditclient.di.ComponentHolder
-import com.bryndsey.simpleredditclient.network.RedditPost
 import com.bryndsey.simpleredditclient.network.RedditPostData
 import com.bryndsey.simpleredditclient.network.RedditService
 import com.bryndsey.simpleredditclient.ui.RedditPostAdapter
@@ -32,22 +31,10 @@ class MainActivity : AppCompatActivity() {
         post_list.adapter = adapter
         post_list.layoutManager = LinearLayoutManager(this)
 
-        val postObservable: Observable<List<RedditPost>> = Observable.create { subscriber ->
-            val callResponse = redditService.getSubredditPosts()
-            val response = callResponse.execute()
-
-            if (response.isSuccessful) {
-                val posts = response.body()!!.data.posts
-                subscriber.onNext(posts)
-                subscriber.onComplete()
-            } else {
-                subscriber.onError(Throwable(response.message()))
-            }
-        }
-
-        postObservable
+        redditService.getSubredditPosts()
                 .retry()
-                .flatMap { list -> Observable.fromIterable(list) }
+                .map{response -> response.data.posts }
+                .flatMapObservable { list -> Observable.fromIterable(list) }
                 .map { redditPost -> redditPost.data }
                 .toList()
                 .subscribeOn(Schedulers.io())
