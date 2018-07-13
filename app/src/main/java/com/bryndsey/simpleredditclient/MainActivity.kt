@@ -34,10 +34,10 @@ class MainActivity : AppCompatActivity() {
                 .subscribe({ postList -> updatePosts(postList)},
                         { error -> Toast.makeText(this, "Error occurred fetching posts", Toast.LENGTH_SHORT).show() }
         )
-
     }
-        private fun updatePosts(postList: List<RedditPostData>) {
-            adapter.postList = postList
-            adapter.notifyDataSetChanged()
-        }
+
+    private fun updatePosts(postList: List<RedditPostData>) {
+        adapter.postList = postList
+        adapter.notifyDataSetChanged()
+    }
 }
