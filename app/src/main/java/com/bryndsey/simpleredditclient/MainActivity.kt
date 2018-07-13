@@ -29,11 +29,11 @@ class MainActivity : AppCompatActivity() {
         post_list.adapter = adapter
         post_list.layoutManager = LinearLayoutManager(this)
 
-       redditPostRepository.fetchRedditPosts()
+        redditPostRepository.fetchRedditPosts()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ postList -> updatePosts(postList)},
+                .subscribe({ postList -> updatePosts(postList) },
                         { Toast.makeText(this, "Error occurred fetching posts", Toast.LENGTH_SHORT).show() }
-        )
+                )
     }
 
     private fun updatePosts(postList: List<RedditPostData>) {
