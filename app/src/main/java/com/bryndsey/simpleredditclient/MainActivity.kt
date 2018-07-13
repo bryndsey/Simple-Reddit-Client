@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
+import com.bryndsey.simpleredditclient.di.ComponentHolder
 import com.bryndsey.simpleredditclient.network.RedditPost
 import com.bryndsey.simpleredditclient.network.RedditPostData
 import com.bryndsey.simpleredditclient.network.RedditService
@@ -12,27 +13,24 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: RedditPostAdapter
 
+    @Inject
+    lateinit var redditService: RedditService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        ComponentHolder.applicationComponent.inject(this)
+
         adapter = RedditPostAdapter()
         post_list.adapter = adapter
         post_list.layoutManager = LinearLayoutManager(this)
-
-        val retrofit = Retrofit.Builder()
-                .baseUrl("https://www.reddit.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-        val redditService = retrofit.create(RedditService::class.java)
 
         val postObservable: Observable<List<RedditPost>> = Observable.create { subscriber ->
             val callResponse = redditService.getSubredditPosts()
