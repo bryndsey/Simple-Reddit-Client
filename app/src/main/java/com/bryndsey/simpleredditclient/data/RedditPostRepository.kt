@@ -6,7 +6,9 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class RedditPostRepository @Inject constructor(val redditService: RedditService) {
 
     fun fetchRedditPosts(): Single<List<RedditPostData>> {
