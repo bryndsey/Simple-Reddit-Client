@@ -28,6 +28,8 @@ class RedditPostListFragment: Fragment() {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(RedditPostListViewModel::class.java)
+
+        adapter = RedditPostListAdapter()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,7 +39,6 @@ class RedditPostListFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        adapter = RedditPostListAdapter()
         post_list.adapter = adapter
 
         viewModel.getRedditPosts()
@@ -48,7 +49,6 @@ class RedditPostListFragment: Fragment() {
     }
 
     private fun updatePosts(postList: List<RedditPostData>) {
-        adapter.postList = postList
-        adapter.notifyDataSetChanged()
+        adapter.setAdapterData(postList)
     }
 }

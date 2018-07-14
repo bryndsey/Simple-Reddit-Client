@@ -8,7 +8,7 @@ import com.bryndsey.simpleredditclient.network.RedditPostData
 
 class RedditPostListAdapter : RecyclerView.Adapter<RedditPostViewHolder>() {
 
-    var postList: List<RedditPostData> = ArrayList()
+    private var postList: List<RedditPostData> = ArrayList()
 
     override fun onBindViewHolder(holder: RedditPostViewHolder, position: Int) {
         holder.bind(postList[position])
@@ -25,5 +25,6 @@ class RedditPostListAdapter : RecyclerView.Adapter<RedditPostViewHolder>() {
 
     fun setAdapterData(posts: List<RedditPostData>) {
         postList = posts
+        notifyDataSetChanged()
     }
 }
