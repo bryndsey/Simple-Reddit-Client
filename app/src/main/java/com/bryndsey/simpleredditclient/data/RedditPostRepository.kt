@@ -17,7 +17,7 @@ class RedditPostRepository @Inject constructor(val redditService: RedditService)
         return redditService.getSubredditPosts()
                 .retry()
                 .map {
-                    it.data.posts.map { post-> post.data }
+                    it.data.posts.map { post -> post.data }
                 }
                 .doOnSuccess {
                     postDataSet.addAll(it)
@@ -25,7 +25,6 @@ class RedditPostRepository @Inject constructor(val redditService: RedditService)
                 .subscribeOn(Schedulers.io())
     }
 
-    // TODO: Figure out if null should be allowed
     fun getPostById(id: String?): Maybe<RedditPostData> {
         val post = postDataSet.find { it.id == id }
 
