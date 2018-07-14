@@ -1,7 +1,6 @@
 package com.bryndsey.simpleredditclient.ui.redditpostdetails
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +9,13 @@ import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.data.RedditPostRepository
 import com.bryndsey.simpleredditclient.di.ComponentHolder
 import com.bryndsey.simpleredditclient.network.RedditPostData
+import com.bryndsey.simpleredditclient.ui.BaseFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.reddit_post_details.*
 import ru.noties.markwon.Markwon
 import javax.inject.Inject
 
-class RedditPostDetailsFragment: Fragment() {
+class RedditPostDetailsFragment: BaseFragment() {
 
     @Inject lateinit var repository: RedditPostRepository
 
@@ -32,13 +32,14 @@ class RedditPostDetailsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO: Properly dispose
-        repository.getPostById(arguments?.getString("postId"))
+        val disposable = repository.getPostById(arguments?.getString("postId"))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { updateViewFromPost(it) },
                         { Log.e("BRYAN", "Error finding cached post", it) }
                 )
+
+        addSubscription(disposable)
     }
 
     private fun updateViewFromPost(redditPostData: RedditPostData) {
