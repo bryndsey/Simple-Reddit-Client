@@ -3,9 +3,10 @@ package com.bryndsey.simpleredditclient.ui.redditpostlist
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
+import androidx.navigation.findNavController
+import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.network.RedditPostData
 import kotlinx.android.synthetic.main.reddit_post.view.*
-import ru.noties.markwon.Markwon
 
 class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -19,17 +20,7 @@ class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 Log.d("BRYAN", "Clicked comments. Opening url " + redditPostData.url)
             }
 
-            Markwon.setMarkdown(reddit_post_text, redditPostData.text.orEmpty())
-
-            reddit_post_text.visibility = View.GONE
-
-            setOnClickListener {
-                if (reddit_post_text.visibility == View.VISIBLE) {
-                    reddit_post_text.visibility = View.GONE
-                } else {
-                    reddit_post_text.visibility = View.VISIBLE
-                }
-            }
+            setOnClickListener { findNavController().navigate(R.id.action_postSelected) }
         }
     }
 }

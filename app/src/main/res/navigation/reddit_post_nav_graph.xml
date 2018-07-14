@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/reddit_post_nav_graph"
+    app:startDestination="@id/redditPostListFragment">
+
+    <fragment
+        android:id="@+id/redditPostListFragment"
+        android:name="com.bryndsey.simpleredditclient.ui.redditpostlist.RedditPostListFragment"
+        android:label="RedditPostListFragment" >
+        <action
+            android:id="@+id/action_postSelected"
+            app:destination="@id/redditPostDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/redditPostDetailsFragment"
+        android:name="com.bryndsey.simpleredditclient.ui.redditpostdetails.RedditPostDetailsFragment"
+        android:label="RedditPostDetailsFragment" />
+</navigation>
