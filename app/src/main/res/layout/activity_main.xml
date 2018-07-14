@@ -8,7 +8,7 @@
     tools:context="com.bryndsey.simpleredditclient.MainActivity">
 
     <fragment
-        android:name="com.bryndsey.simpleredditclient.ui.RedditPostListFragment"
+        android:name="com.bryndsey.simpleredditclient.ui.redditpostlist.RedditPostListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/reddit_post_list" />

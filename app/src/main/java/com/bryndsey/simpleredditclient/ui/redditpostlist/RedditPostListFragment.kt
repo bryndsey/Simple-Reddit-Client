@@ -1,4 +1,4 @@
-package com.bryndsey.simpleredditclient.ui
+package com.bryndsey.simpleredditclient.ui.redditpostlist
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 class RedditPostListFragment: Fragment() {
 
-    private lateinit var adapter: RedditPostAdapter
+    private lateinit var adapter: RedditPostListAdapter
 
     @Inject lateinit var redditPostRepository: RedditPostRepository
 
@@ -32,7 +32,7 @@ class RedditPostListFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        adapter = RedditPostAdapter()
+        adapter = RedditPostListAdapter()
         post_list.adapter = adapter
 
         redditPostRepository.fetchRedditPosts()

@@ -1,4 +1,4 @@
-package com.bryndsey.simpleredditclient.ui
+package com.bryndsey.simpleredditclient.ui.redditpostlist
 
 import android.support.v7.widget.RecyclerView
 import android.util.Log
