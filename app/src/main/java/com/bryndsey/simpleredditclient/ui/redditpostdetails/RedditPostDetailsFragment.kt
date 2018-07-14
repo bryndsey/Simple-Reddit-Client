@@ -7,11 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bryndsey.simpleredditclient.R
+import com.bryndsey.simpleredditclient.data.RedditPostRepository
+import com.bryndsey.simpleredditclient.di.ComponentHolder
 import com.bryndsey.simpleredditclient.network.RedditPostData
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.reddit_post_details.*
 import ru.noties.markwon.Markwon
+import javax.inject.Inject
 
 class RedditPostDetailsFragment: Fragment() {
+
+    @Inject lateinit var repository: RedditPostRepository
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        ComponentHolder.applicationComponent.inject(this)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.reddit_post_details, container, false)
@@ -20,13 +32,13 @@ class RedditPostDetailsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        updateViewFromPost(RedditPostData(
-                title = "Test Title",
-                text = "This is some test text. I hope it works properly...",
-                score = 1337,
-                numComments = 42,
-                url = null)
-        )
+        // TODO: Properly dispose
+        repository.getPostById(arguments?.getString("postId"))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { updateViewFromPost(it) },
+                        { Log.e("BRYAN", "Error finding cached post", it) }
+                )
     }
 
     private fun updateViewFromPost(redditPostData: RedditPostData) {

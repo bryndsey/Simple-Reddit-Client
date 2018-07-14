@@ -18,5 +18,9 @@
     <fragment
         android:id="@+id/redditPostDetailsFragment"
         android:name="com.bryndsey.simpleredditclient.ui.redditpostdetails.RedditPostDetailsFragment"
-        android:label="RedditPostDetailsFragment" />
+        android:label="RedditPostDetailsFragment" >
+        <argument
+            android:name="postId"
+            app:type="string" />
+    </fragment>
 </navigation>

@@ -1,5 +1,6 @@
 package com.bryndsey.simpleredditclient.ui.redditpostlist
 
+import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
@@ -20,7 +21,9 @@ class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 Log.d("BRYAN", "Clicked comments. Opening url " + redditPostData.url)
             }
 
-            setOnClickListener { findNavController().navigate(R.id.action_postSelected) }
+            val bundle = Bundle()
+            bundle.putString("postId", redditPostData.id)
+            setOnClickListener { findNavController().navigate(R.id.action_postSelected, bundle) }
         }
     }
 }
