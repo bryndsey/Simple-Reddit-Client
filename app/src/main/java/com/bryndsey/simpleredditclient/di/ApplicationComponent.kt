@@ -1,6 +1,7 @@
 package com.bryndsey.simpleredditclient.di
 
-import com.bryndsey.simpleredditclient.ui.RedditPostListFragment
+import com.bryndsey.simpleredditclient.ui.redditpostdetails.RedditPostDetailsFragment
+import com.bryndsey.simpleredditclient.ui.redditpostlist.RedditPostListFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -9,4 +10,6 @@ import javax.inject.Singleton
 interface ApplicationComponent {
 
     fun inject(redditPostListFragment: RedditPostListFragment)
+
+    fun inject(redditPostDetailsFragment: RedditPostDetailsFragment)
 }

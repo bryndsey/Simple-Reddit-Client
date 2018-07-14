@@ -8,4 +8,5 @@ data class RedditPostData(
         @SerializedName("selftext") val text: String?,
         @SerializedName("score") val score: Int?,
         @SerializedName("num_comments") val numComments: Int?,
-        @SerializedName("url") val url: String?)
+        @SerializedName("url") val url: String?,
+        @SerializedName("id") val id: String)

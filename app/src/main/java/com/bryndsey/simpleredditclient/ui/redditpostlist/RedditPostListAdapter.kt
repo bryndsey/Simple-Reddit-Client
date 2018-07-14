@@ -1,4 +1,4 @@
-package com.bryndsey.simpleredditclient.ui
+package com.bryndsey.simpleredditclient.ui.redditpostlist
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.network.RedditPostData
 
-class RedditPostAdapter : RecyclerView.Adapter<RedditPostViewHolder>() {
+class RedditPostListAdapter : RecyclerView.Adapter<RedditPostViewHolder>() {
 
-    var postList: List<RedditPostData> = ArrayList()
+    private var postList: List<RedditPostData> = ArrayList()
 
     override fun onBindViewHolder(holder: RedditPostViewHolder, position: Int) {
         holder.bind(postList[position])
@@ -25,5 +25,6 @@ class RedditPostAdapter : RecyclerView.Adapter<RedditPostViewHolder>() {
 
     fun setAdapterData(posts: List<RedditPostData>) {
         postList = posts
+        notifyDataSetChanged()
     }
 }

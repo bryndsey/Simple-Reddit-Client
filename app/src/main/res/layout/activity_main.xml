@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_content"
     android:layout_width="match_parent"
@@ -8,9 +9,11 @@
     tools:context="com.bryndsey.simpleredditclient.MainActivity">
 
     <fragment
-        android:name="com.bryndsey.simpleredditclient.ui.RedditPostListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/reddit_post_list" />
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:navGraph="@navigation/reddit_post_nav_graph"
+        app:defaultNavHost="true" />
 
 </FrameLayout>
