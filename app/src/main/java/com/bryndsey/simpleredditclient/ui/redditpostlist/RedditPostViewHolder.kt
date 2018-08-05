@@ -29,10 +29,13 @@ class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 if (redditPostData.isSelf) {
                     openPostDetails(redditPostData)
                 } else {
-                    val cusomtTabsIntent = CustomTabsIntent.Builder().build()
+                    val customTabsIntent = CustomTabsIntent.Builder()
+                            .setToolbarColor(resources.getColor(R.color.colorPrimary))
+                            .setShowTitle(true)
+                            .build()
 
                     CustomTabsHelper.openCustomTab(itemView.context,
-                            cusomtTabsIntent,
+                            customTabsIntent,
                             Uri.parse(redditPostData.url),
                             WebViewFallback())
                 }
