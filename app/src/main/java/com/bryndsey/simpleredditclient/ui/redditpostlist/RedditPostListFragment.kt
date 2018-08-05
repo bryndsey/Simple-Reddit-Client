@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 class RedditPostListFragment: BaseFragment() {
 
-    private lateinit var adapter: RedditPostListAdapter
+    private val adapter = RedditPostListAdapter()
 
     @Inject lateinit var viewModelFactory: ViewModelFactory<RedditPostListViewModel>
     private lateinit var viewModel: RedditPostListViewModel
@@ -28,8 +28,6 @@ class RedditPostListFragment: BaseFragment() {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(RedditPostListViewModel::class.java)
-
-        adapter = RedditPostListAdapter()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
