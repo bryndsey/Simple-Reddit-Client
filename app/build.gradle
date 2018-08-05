@@ -53,4 +53,6 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
 
     implementation 'ru.noties:markwon:1.0.1'
+
+    implementation 'saschpe.android:customtabs:1.1.2'
 }
