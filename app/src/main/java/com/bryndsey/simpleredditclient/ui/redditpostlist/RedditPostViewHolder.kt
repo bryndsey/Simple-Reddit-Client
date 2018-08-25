@@ -21,6 +21,9 @@ class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             reddit_post_score.text = redditPostData.score.toString()
             reddit_post_comments.text = redditPostData.numComments.toString() + " comments"
 
+            val linkVisibility = if (redditPostData.isSelf) View.INVISIBLE else View. VISIBLE
+            reddit_post_link_indicator.visibility = linkVisibility
+
             reddit_post_comments.setOnClickListener {
                 Log.d("BRYAN", "Clicked comments. Opening url " + redditPostData.url)
             }
