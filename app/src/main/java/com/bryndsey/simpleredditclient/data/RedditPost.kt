@@ -1,4 +1,4 @@
-package com.bryndsey.simpleredditclient.network
+package com.bryndsey.simpleredditclient.data
 
 import com.google.gson.annotations.SerializedName
 

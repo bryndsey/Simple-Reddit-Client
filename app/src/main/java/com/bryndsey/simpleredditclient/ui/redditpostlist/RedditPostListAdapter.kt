@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bryndsey.simpleredditclient.R
-import com.bryndsey.simpleredditclient.network.RedditPost
+import com.bryndsey.simpleredditclient.data.RedditPost
 
 class RedditPostListAdapter : RecyclerView.Adapter<RedditPostViewHolder>() {
 

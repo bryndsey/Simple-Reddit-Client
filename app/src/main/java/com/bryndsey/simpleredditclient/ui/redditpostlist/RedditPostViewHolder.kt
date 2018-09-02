@@ -8,7 +8,7 @@ import android.util.Log
 import android.view.View
 import androidx.navigation.findNavController
 import com.bryndsey.simpleredditclient.R
-import com.bryndsey.simpleredditclient.network.RedditPost
+import com.bryndsey.simpleredditclient.data.RedditPost
 import kotlinx.android.synthetic.main.reddit_post.view.*
 import saschpe.android.customtabs.CustomTabsHelper
 import saschpe.android.customtabs.WebViewFallback

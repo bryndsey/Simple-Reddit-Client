@@ -2,7 +2,7 @@ package com.bryndsey.simpleredditclient.ui.redditpostlist
 
 import android.arch.lifecycle.ViewModel
 import com.bryndsey.simpleredditclient.data.RedditPostRepository
-import com.bryndsey.simpleredditclient.network.RedditPost
+import com.bryndsey.simpleredditclient.data.RedditPost
 import io.reactivex.Single
 import javax.inject.Inject
 

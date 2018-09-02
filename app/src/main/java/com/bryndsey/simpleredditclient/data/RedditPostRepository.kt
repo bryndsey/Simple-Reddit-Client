@@ -1,6 +1,5 @@
 package com.bryndsey.simpleredditclient.data
 
-import com.bryndsey.simpleredditclient.network.RedditPost
 import com.bryndsey.simpleredditclient.network.RedditService
 import com.bryndsey.simpleredditclient.network.toRedditPost
 import io.reactivex.Maybe

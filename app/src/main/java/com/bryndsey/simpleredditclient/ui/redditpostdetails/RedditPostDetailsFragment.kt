@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.data.RedditPostRepository
 import com.bryndsey.simpleredditclient.di.ComponentHolder
-import com.bryndsey.simpleredditclient.network.RedditPost
+import com.bryndsey.simpleredditclient.data.RedditPost
 import com.bryndsey.simpleredditclient.ui.BaseFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.reddit_post_details.*
