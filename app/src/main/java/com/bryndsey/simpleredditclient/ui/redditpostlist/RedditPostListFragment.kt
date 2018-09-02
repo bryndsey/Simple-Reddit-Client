@@ -9,7 +9,7 @@ import android.widget.Toast
 import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.di.ComponentHolder
 import com.bryndsey.simpleredditclient.di.ViewModelFactory
-import com.bryndsey.simpleredditclient.network.RedditPostData
+import com.bryndsey.simpleredditclient.data.RedditPost
 import com.bryndsey.simpleredditclient.ui.BaseFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.reddit_post_list.*
@@ -48,7 +48,7 @@ class RedditPostListFragment: BaseFragment() {
         addSubscription(disposable)
     }
 
-    private fun updatePosts(postList: List<RedditPostData>) {
+    private fun updatePosts(postList: List<RedditPost>) {
         adapter.setAdapterData(postList)
     }
 }

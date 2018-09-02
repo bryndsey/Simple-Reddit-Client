@@ -1,7 +1,7 @@
 package com.bryndsey.simpleredditclient.data
 
-import com.bryndsey.simpleredditclient.network.RedditPostData
 import com.bryndsey.simpleredditclient.network.RedditService
+import com.bryndsey.simpleredditclient.network.toRedditPost
 import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
@@ -11,13 +11,13 @@ import javax.inject.Singleton
 @Singleton
 class RedditPostRepository @Inject constructor(val redditService: RedditService) {
 
-    private val postDataSet = mutableSetOf<RedditPostData>()
+    private val postDataSet = mutableSetOf<RedditPost>()
 
-    fun fetchRedditPosts(): Single<List<RedditPostData>> {
+    fun fetchRedditPosts(): Single<List<RedditPost>> {
         return redditService.getSubredditPosts()
                 .retry()
                 .map {
-                    it.data.posts.map { post -> post.data }
+                    it.data.posts.map { post -> post.data.toRedditPost() }
                 }
                 .doOnSuccess {
                     postDataSet.addAll(it)
@@ -25,7 +25,7 @@ class RedditPostRepository @Inject constructor(val redditService: RedditService)
                 .subscribeOn(Schedulers.io())
     }
 
-    fun getPostById(id: String?): Maybe<RedditPostData> {
+    fun getPostById(id: String?): Maybe<RedditPost> {
         val post = postDataSet.find { it.id == id }
 
         return if (post == null) Maybe.empty() else Maybe.just(post)
