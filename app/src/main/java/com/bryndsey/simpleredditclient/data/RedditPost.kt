@@ -1,14 +1,11 @@
 package com.bryndsey.simpleredditclient.data
 
-import com.google.gson.annotations.SerializedName
-
-
 data class RedditPost(
-        @SerializedName("title") val title: String?,
-        @SerializedName("selftext") val text: String?,
-        @SerializedName("score") val score: Int?,
-        @SerializedName("num_comments") val numComments: Int?,
-        @SerializedName("url") val url: String?,
-        @SerializedName("id") val id: String,
-        @SerializedName("is_self") val isSelf: Boolean
+        val title: String?,
+        val text: String?,
+        val score: Int?,
+        val numComments: Int?,
+        val url: String?,
+        val id: String,
+        val isSelf: Boolean
 )
