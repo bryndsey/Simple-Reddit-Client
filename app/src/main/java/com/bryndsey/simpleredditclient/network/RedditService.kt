@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface RedditService {
 
     @GET("r/AndroidDev/.json")
-    fun getSubredditPosts(): Single<RedditResponse>
+    fun getSubredditPosts(): Single<ApiRedditResponse>
 }
