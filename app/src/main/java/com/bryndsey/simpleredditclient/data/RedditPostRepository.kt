@@ -2,6 +2,7 @@ package com.bryndsey.simpleredditclient.data
 
 import com.bryndsey.simpleredditclient.network.RedditPostData
 import com.bryndsey.simpleredditclient.network.RedditService
+import com.bryndsey.simpleredditclient.network.toRedditPost
 import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
@@ -17,7 +18,7 @@ class RedditPostRepository @Inject constructor(val redditService: RedditService)
         return redditService.getSubredditPosts()
                 .retry()
                 .map {
-                    it.data.posts.map { post -> post.data }
+                    it.data.posts.map { post -> post.data.toRedditPost() }
                 }
                 .doOnSuccess {
                     postDataSet.addAll(it)
