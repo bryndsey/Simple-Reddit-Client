@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.data.RedditPostRepository
 import com.bryndsey.simpleredditclient.di.ComponentHolder
-import com.bryndsey.simpleredditclient.network.RedditPostData
+import com.bryndsey.simpleredditclient.network.RedditPost
 import com.bryndsey.simpleredditclient.ui.BaseFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.reddit_post_details.*
@@ -42,15 +42,15 @@ class RedditPostDetailsFragment: BaseFragment() {
         addSubscription(disposable)
     }
 
-    private fun updateViewFromPost(redditPostData: RedditPostData) {
-        reddit_post_title.text = redditPostData.title
-        reddit_post_score.text = redditPostData.score.toString()
-        reddit_post_comments.text = redditPostData.numComments.toString() + " comments"
+    private fun updateViewFromPost(redditPost: RedditPost) {
+        reddit_post_title.text = redditPost.title
+        reddit_post_score.text = redditPost.score.toString()
+        reddit_post_comments.text = redditPost.numComments.toString() + " comments"
 
         reddit_post_comments.setOnClickListener {
-            Log.d("BRYAN", "Clicked comments. Opening url " + redditPostData.url)
+            Log.d("BRYAN", "Clicked comments. Opening url " + redditPost.url)
         }
 
-        Markwon.setMarkdown(reddit_post_text, redditPostData.text.orEmpty())
+        Markwon.setMarkdown(reddit_post_text, redditPost.text.orEmpty())
     }
 }

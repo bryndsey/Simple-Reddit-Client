@@ -1,7 +1,7 @@
 package com.bryndsey.simpleredditclient.network
 
-fun ApiRedditPostData.toRedditPost(): RedditPostData =
-        RedditPostData(
+fun ApiRedditPostData.toRedditPost(): RedditPost =
+        RedditPost(
                 title,
                 text,
                 score,
