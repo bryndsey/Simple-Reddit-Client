@@ -21,6 +21,6 @@
         android:label="RedditPostDetailsFragment" >
         <argument
             android:name="postId"
-            app:type="string" />
+            app:argType="string" />
     </fragment>
 </navigation>

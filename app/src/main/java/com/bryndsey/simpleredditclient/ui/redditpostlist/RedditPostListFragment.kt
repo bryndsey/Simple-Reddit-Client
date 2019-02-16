@@ -1,6 +1,6 @@
 package com.bryndsey.simpleredditclient.ui.redditpostlist
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

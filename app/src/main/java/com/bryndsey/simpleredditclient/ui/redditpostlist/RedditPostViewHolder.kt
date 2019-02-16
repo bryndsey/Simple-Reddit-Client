@@ -2,8 +2,8 @@ package com.bryndsey.simpleredditclient.ui.redditpostlist
 
 import android.net.Uri
 import android.os.Bundle
-import android.support.customtabs.CustomTabsIntent
-import android.support.v7.widget.RecyclerView
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import androidx.navigation.findNavController
