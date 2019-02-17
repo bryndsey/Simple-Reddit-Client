@@ -5,8 +5,7 @@
 
     <fragment
         android:id="@+id/redditPostListFragment"
-        android:name="com.bryndsey.simpleredditclient.ui.redditpostlist.RedditPostListFragment"
-        android:label="RedditPostListFragment" >
+        android:name="com.bryndsey.simpleredditclient.ui.redditpostlist.RedditPostListFragment" >
         <action
             android:id="@+id/action_postSelected"
             app:destination="@id/redditPostDetailsFragment"
@@ -18,7 +17,7 @@
     <fragment
         android:id="@+id/redditPostDetailsFragment"
         android:name="com.bryndsey.simpleredditclient.ui.redditpostdetails.RedditPostDetailsFragment"
-        android:label="RedditPostDetailsFragment" >
+        android:label="@string/reddit_post_details_screen_title" >
         <argument
             android:name="postId"
             app:argType="string" />

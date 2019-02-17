@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Simple Reddit Client</string>
+
+    <string name="reddit_post_details_screen_title">Post Details</string>
 </resources>
