@@ -6,7 +6,7 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class SubredditSearchUseCase @Inject constructor(val redditService: RedditService) {
+class SubredditSearchUseCase @Inject constructor(private val redditService: RedditService) {
 
     fun searchSubreddits(searchTerm: String): Single<List<Subreddit>> {
         return redditService.searchSubreddits(searchTerm)
