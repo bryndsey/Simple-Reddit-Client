@@ -1,15 +1,15 @@
 package com.bryndsey.simpleredditclient.ui.redditpostlist
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProviders
 import com.bryndsey.simpleredditclient.R
+import com.bryndsey.simpleredditclient.data.RedditPost
 import com.bryndsey.simpleredditclient.di.ComponentHolder
 import com.bryndsey.simpleredditclient.di.ViewModelFactory
-import com.bryndsey.simpleredditclient.data.RedditPost
 import com.bryndsey.simpleredditclient.ui.BaseFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.reddit_post_list.*
@@ -38,8 +38,8 @@ class RedditPostListFragment: BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         post_list.adapter = adapter
-
-        val disposable = viewModel.getRedditPosts()
+        // TODO: Properly handle nullability
+        val disposable = viewModel.getRedditPosts(arguments!!.getString("subredditName")!!)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ postList -> updatePosts(postList) },
                         { Toast.makeText(context, "Error occurred fetching posts", Toast.LENGTH_SHORT).show() }
