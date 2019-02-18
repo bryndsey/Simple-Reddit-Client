@@ -17,4 +17,5 @@ fun ApiRedditListing.toSubreddit(): Subreddit =
         Subreddit(
                 displayName,
                 displayNamePrefixed,
+                shortDescription,
                 subscriberCount)

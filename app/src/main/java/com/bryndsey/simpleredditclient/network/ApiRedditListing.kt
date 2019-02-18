@@ -13,5 +13,6 @@ data class ApiRedditListing(
 
         @SerializedName("display_name") val displayName: String?,
         @SerializedName("display_name_prefixed") val displayNamePrefixed: String?,
+        @SerializedName("public_description") val shortDescription: String?,
         @SerializedName("subscribers") val subscriberCount: Int?
 )
