@@ -1,8 +1,9 @@
 package com.bryndsey.simpleredditclient.network
 
 import com.bryndsey.simpleredditclient.data.RedditPost
+import com.bryndsey.simpleredditclient.data.Subreddit
 
-fun ApiRedditPostData.toRedditPost(): RedditPost =
+fun ApiRedditListing.toRedditPost(): RedditPost =
         RedditPost(
                 title,
                 text,
@@ -11,3 +12,9 @@ fun ApiRedditPostData.toRedditPost(): RedditPost =
                 url,
                 id,
                 isSelf)
+
+fun ApiRedditListing.toSubreddit(): Subreddit =
+        Subreddit(
+                displayName,
+                displayNamePrefixed,
+                subscriberCount)
