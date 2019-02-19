@@ -37,9 +37,11 @@ class RedditPostListFragment: BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // TODO: Define a better fallback if stuff is null
+        val subredditName = arguments?.getString("subredditName") ?: ""
+
         post_list.adapter = adapter
-        // TODO: Properly handle nullability
-        val disposable = viewModel.getRedditPosts(arguments!!.getString("subredditName")!!)
+        val disposable = viewModel.getRedditPosts(subredditName)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ postList -> updatePosts(postList) },
                         { Toast.makeText(context, "Error occurred fetching posts", Toast.LENGTH_SHORT).show() }
