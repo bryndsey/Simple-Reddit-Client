@@ -13,8 +13,8 @@ class RedditPostRepository @Inject constructor(val redditService: RedditService)
 
     private val postDataSet = mutableSetOf<RedditPost>()
 
-    fun fetchRedditPosts(): Single<List<RedditPost>> {
-        return redditService.getSubredditPosts()
+    fun fetchRedditPosts(subredditName: String): Single<List<RedditPost>> {
+        return redditService.getSubredditPosts(subredditName)
                 .retry()
                 .map {
                     it.data.posts.map { post -> post.data.toRedditPost() }

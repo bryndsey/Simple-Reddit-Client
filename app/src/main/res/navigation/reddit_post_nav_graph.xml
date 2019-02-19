@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/reddit_post_nav_graph"
-    app:startDestination="@id/redditPostListFragment">
+    app:startDestination="@id/subredditSearchFragment">
 
     <fragment
+        android:id="@+id/subredditSearchFragment"
+        android:name="com.bryndsey.simpleredditclient.ui.subredditselection.SubredditSearchFragment"
+        android:label="Search Subreddits">
+        <action
+            android:id="@+id/action_subredditSelected"
+            app:destination="@id/redditPostListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
         android:id="@+id/redditPostListFragment"
-        android:name="com.bryndsey.simpleredditclient.ui.redditpostlist.RedditPostListFragment" >
+        android:name="com.bryndsey.simpleredditclient.ui.redditpostlist.RedditPostListFragment"
+        android:label="r/{subredditName}">
         <action
             android:id="@+id/action_postSelected"
             app:destination="@id/redditPostDetailsFragment"
@@ -13,6 +26,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="subredditName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/redditPostDetailsFragment"
