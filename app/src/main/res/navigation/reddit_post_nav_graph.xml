@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/subredditSearchFragment"
         android:name="com.bryndsey.simpleredditclient.ui.subredditselection.SubredditSearchFragment"
-        android:label="SubredditSearchFragment" >
+        android:label="Search Subreddits">
         <action
             android:id="@+id/action_subredditSelected"
             app:destination="@id/redditPostListFragment"
@@ -17,7 +17,8 @@
     </fragment>
     <fragment
         android:id="@+id/redditPostListFragment"
-        android:name="com.bryndsey.simpleredditclient.ui.redditpostlist.RedditPostListFragment" >
+        android:name="com.bryndsey.simpleredditclient.ui.redditpostlist.RedditPostListFragment"
+        android:label="r/{subredditName}">
         <action
             android:id="@+id/action_postSelected"
             app:destination="@id/redditPostDetailsFragment"
