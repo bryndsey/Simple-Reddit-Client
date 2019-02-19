@@ -9,6 +9,7 @@ import javax.inject.Inject
 class RedditPostListViewModel @Inject constructor(private val redditPostRepository: RedditPostRepository) :
         ViewModel() {
 
+    // TODO: The caching here is broken. Update to use LiveData
     fun getRedditPosts(subredditName: String): Single<List<RedditPost>> {
         return redditPostRepository.fetchRedditPosts(subredditName)
                 .onErrorReturn { emptyList() }
