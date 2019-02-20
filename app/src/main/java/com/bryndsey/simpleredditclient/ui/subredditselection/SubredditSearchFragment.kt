@@ -2,6 +2,7 @@ package com.bryndsey.simpleredditclient.ui.subredditselection
 
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.annotation.ContentView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -37,7 +38,15 @@ class SubredditSearchFragment : BaseFragment() {
             subredditSearchAdapter.setAdapterData(it)
         })
 
-        subredditPerformSearchButton.setOnClickListener { performSearch() }
+        subredditNameSearchBox.setOnEditorActionListener { v, actionId, event ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_SEARCH -> {
+                    performSearch()
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun performSearch() {

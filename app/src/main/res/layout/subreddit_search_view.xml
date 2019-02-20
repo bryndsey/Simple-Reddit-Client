@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/subreddit_search_hint"
+        android:imeOptions="actionSearch"
         android:inputType="textPersonName"
         tools:text="AndroidDev" />
 
@@ -25,11 +26,5 @@
         tools:listitem="@layout/subreddit_overview_card">
 
     </androidx.recyclerview.widget.RecyclerView>
-
-    <Button
-        android:id="@+id/subredditPerformSearchButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Search" />
 
 </LinearLayout>
