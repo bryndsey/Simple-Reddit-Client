@@ -36,7 +36,7 @@ class SubredditSearchFragment : BaseFragment() {
 
         subredditSearchResultsRecyclerView.adapter = subredditSearchAdapter
 
-        viewModel.searchLiveData.observe(this, Observer{
+        viewModel.searchLiveData.observe(this, Observer {
             subredditSearchAdapter.setAdapterData(it)
         })
 
