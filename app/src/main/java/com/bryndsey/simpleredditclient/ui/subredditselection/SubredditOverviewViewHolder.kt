@@ -2,6 +2,8 @@ package com.bryndsey.simpleredditclient.ui.subredditselection
 
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bryndsey.simpleredditclient.R
@@ -12,6 +14,12 @@ class SubredditOverviewViewHolder(itemView: View) : RecyclerView.ViewHolder(item
 
     fun bind(subreddit: Subreddit) {
         itemView.subredditOverviewCardNameText.text = subreddit.prefixedName
+
+        if (subreddit.shortDescription.isNullOrBlank()) {
+            itemView.subredditOverviewCardDescriptionText.visibility = GONE
+        } else {
+            itemView.subredditOverviewCardDescriptionText.visibility = VISIBLE
+        }
         itemView.subredditOverviewCardDescriptionText.text = subreddit.shortDescription
 
         itemView.setOnClickListener {

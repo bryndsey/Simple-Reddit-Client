@@ -1,7 +1,10 @@
 package com.bryndsey.simpleredditclient.ui.subredditselection
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.ContentView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -33,15 +36,30 @@ class SubredditSearchFragment : BaseFragment() {
 
         subredditSearchResultsRecyclerView.adapter = subredditSearchAdapter
 
-        viewModel.searchLiveData.observe(this, Observer{
+        viewModel.searchLiveData.observe(this, Observer {
             subredditSearchAdapter.setAdapterData(it)
         })
 
-        subredditPerformSearchButton.setOnClickListener { performSearch() }
+        subredditNameSearchBox.setOnEditorActionListener { v, actionId, event ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_SEARCH -> {
+                    performSearch()
+                    closeKeyboard()
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun performSearch() {
         val searchTerm = subredditNameSearchBox.text.toString()
         viewModel.performSearch(searchTerm)
+    }
+
+    private fun closeKeyboard() {
+        val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        // TODO: Maybe don't call this at all if view is null?
+        inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 }
