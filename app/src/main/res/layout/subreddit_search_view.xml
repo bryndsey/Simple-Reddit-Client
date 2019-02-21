@@ -30,7 +30,7 @@
         android:ems="10"
         android:hint="@string/subreddit_search_hint"
         android:imeOptions="actionSearch"
-        android:inputType="textPersonName"
+        android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/subredditSearchResultsRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/searchIcon"
