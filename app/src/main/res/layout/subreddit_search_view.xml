@@ -34,7 +34,9 @@
         app:layout_constraintBottom_toTopOf="@+id/subredditSearchResultsRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/searchIcon"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+        <requestFocus/>
+    </EditText>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/subredditSearchResultsRecyclerView"
