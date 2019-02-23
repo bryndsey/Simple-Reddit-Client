@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.data.RedditPost
 import com.bryndsey.simpleredditclient.ui.TimeDisplayFormatter
-import kotlinx.android.synthetic.main.reddit_post.view.*
+import kotlinx.android.synthetic.main.reddit_post_overview.view.*
 import saschpe.android.customtabs.CustomTabsHelper
 import saschpe.android.customtabs.WebViewFallback
 
