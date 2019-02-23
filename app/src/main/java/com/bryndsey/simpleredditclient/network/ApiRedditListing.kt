@@ -10,6 +10,7 @@ data class ApiRedditListing(
         @SerializedName("url") val url: String?,
         @SerializedName("id") val id: String,
         @SerializedName("is_self") val isSelf: Boolean,
+        @SerializedName("created_utc") val createdTimeUtcSeconds: Long?,
 
         @SerializedName("display_name") val displayName: String?,
         @SerializedName("display_name_prefixed") val displayNamePrefixed: String?,
