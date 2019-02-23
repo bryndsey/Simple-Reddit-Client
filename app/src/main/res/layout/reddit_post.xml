@@ -40,6 +40,20 @@
             tools:text="11 comments" />
 
         <TextView
+            android:id="@+id/reddit_post_creation_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:gravity="center"
+            android:drawableStart="@drawable/post_time"
+            android:drawablePadding="2dp"
+            android:drawableTint="@color/iconTint"
+            app:layout_constraintBottom_toBottomOf="@+id/reddit_post_comments"
+            app:layout_constraintStart_toEndOf="@+id/reddit_post_comments"
+            app:layout_constraintTop_toTopOf="@+id/reddit_post_comments"
+            tools:text="7h" />
+
+        <TextView
             android:id="@+id/reddit_post_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
