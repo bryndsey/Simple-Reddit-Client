@@ -18,6 +18,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navController = findNavController(R.id.nav_host_fragment)
+
+        if (FeatureFlags.UseHardcodedSubreddits) {
+            navController.navigate(R.id.action_showHardcodedSubreddit)
+        }
+
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
