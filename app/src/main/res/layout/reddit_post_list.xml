@@ -7,6 +7,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-    tools:listitem="@layout/reddit_post">
+    tools:listitem="@layout/reddit_post_overview_card">
 
 </androidx.recyclerview.widget.RecyclerView>

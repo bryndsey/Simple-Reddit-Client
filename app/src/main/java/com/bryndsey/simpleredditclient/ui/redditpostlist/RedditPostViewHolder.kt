@@ -2,14 +2,15 @@ package com.bryndsey.simpleredditclient.ui.redditpostlist
 
 import android.net.Uri
 import android.os.Bundle
-import androidx.browser.customtabs.CustomTabsIntent
-import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.View
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.data.RedditPost
-import kotlinx.android.synthetic.main.reddit_post.view.*
+import com.bryndsey.simpleredditclient.ui.TimeDisplayFormatter
+import kotlinx.android.synthetic.main.reddit_post_overview.view.*
 import saschpe.android.customtabs.CustomTabsHelper
 import saschpe.android.customtabs.WebViewFallback
 
@@ -20,8 +21,15 @@ class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             reddit_post_title.text = redditPost.title
             reddit_post_score.text = redditPost.score.toString()
             reddit_post_comments.text = redditPost.numComments.toString() + " comments"
+            if (redditPost.createdDateMillis != null) {
+                reddit_post_creation_time.text = TimeDisplayFormatter.getStringForTimeSince(redditPost.createdDateMillis)
+                reddit_post_creation_time.visibility = View.VISIBLE
+            } else {
+                reddit_post_creation_time.visibility = View.GONE
+                reddit_post_creation_time.text = null
+            }
 
-            val linkVisibility = if (redditPost.isSelf) View.INVISIBLE else View. VISIBLE
+            val linkVisibility = if (redditPost.isSelf) View.INVISIBLE else View.VISIBLE
             reddit_post_link_indicator.visibility = linkVisibility
 
             reddit_post_comments.setOnClickListener {

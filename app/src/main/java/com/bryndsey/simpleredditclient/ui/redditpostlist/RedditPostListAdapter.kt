@@ -15,7 +15,7 @@ class RedditPostListAdapter : RecyclerView.Adapter<RedditPostViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RedditPostViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.reddit_post, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.reddit_post_overview_card, parent, false)
         return RedditPostViewHolder(view)
     }
 
