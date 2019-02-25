@@ -8,15 +8,28 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.bryndsey.simpleredditclient.R
+import com.bryndsey.simpleredditclient.data.Comment
 import com.bryndsey.simpleredditclient.data.RedditPost
 import com.bryndsey.simpleredditclient.ui.TimeDisplayFormatter
+import com.bryndsey.simpleredditclient.ui.redditpostdetails.comments.CommentItem
 import com.bryndsey.simpleredditclient.ui.toDisplayString
+import com.xwray.groupie.ExpandableGroup
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Section
+import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.reddit_post_details.*
 import kotlinx.android.synthetic.main.reddit_post_overview.*
 import org.koin.android.viewmodel.ext.android.getViewModel
 import ru.noties.markwon.Markwon
 
 class RedditPostDetailsFragment: Fragment() {
+
+    private val testCommentList = listOf(
+            Comment("Test Comment 1", 1),
+            Comment("Test Comment 2", 10),
+            Comment("Test Comment 3", 100),
+            Comment("Test Comment 4", 1000)
+    )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.reddit_post_details, container, false)
@@ -33,6 +46,16 @@ class RedditPostDetailsFragment: Fragment() {
         viewModel.postLiveData.observe(viewLifecycleOwner, Observer {
             updateViewFromPost(it)
         })
+
+        val groupAdapter = GroupAdapter<ViewHolder>()
+        val commentItems = testCommentList.map { CommentItem(it) }
+
+        val commentSection = Section(commentItems)
+        val testExpandableGroup = ExpandableGroup(commentItems[0])
+        testExpandableGroup.addAll(commentItems)
+//        groupAdapter.addAll(commentItems)
+        groupAdapter.add(testExpandableGroup)
+        redditPostComments.adapter = groupAdapter
     }
 
     private fun updateViewFromPost(redditPost: RedditPost) {
