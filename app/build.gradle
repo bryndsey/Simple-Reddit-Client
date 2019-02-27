@@ -55,4 +55,6 @@ dependencies {
     implementation 'ru.noties:markwon:1.0.1'
 
     implementation 'saschpe.android:customtabs:2.0.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
 }
