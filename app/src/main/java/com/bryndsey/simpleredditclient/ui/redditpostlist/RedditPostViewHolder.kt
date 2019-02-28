@@ -36,7 +36,6 @@ class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 Glide.with(itemView)
                         .load(redditPost.url)
                         .centerCrop()
-                        .placeholder(R.drawable.search)
                         .into(postImage)
 
             } else {
