@@ -9,7 +9,9 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.data.RedditPost
+import com.bryndsey.simpleredditclient.network.PostHintType
 import com.bryndsey.simpleredditclient.ui.TimeDisplayFormatter
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.reddit_post_overview.view.*
 import saschpe.android.customtabs.CustomTabsHelper
 import saschpe.android.customtabs.WebViewFallback
@@ -29,7 +31,21 @@ class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 reddit_post_creation_time.text = null
             }
 
-            val linkVisibility = if (redditPost.isSelf) View.INVISIBLE else View.VISIBLE
+            if (redditPost.postHintType == PostHintType.IMAGE) {
+                postImage.visibility = View.VISIBLE
+                Glide.with(itemView)
+                        .load(redditPost.url)
+                        .centerCrop()
+                        .placeholder(R.drawable.search)
+                        .into(postImage)
+
+            } else {
+                postImage.visibility = View.GONE
+                Glide.with(itemView)
+                        .clear(postImage)
+            }
+
+            val linkVisibility = if (isInternalPost(redditPost)) View.INVISIBLE else View.VISIBLE
             reddit_post_link_indicator.visibility = linkVisibility
 
             reddit_post_comments.setOnClickListener {
@@ -39,6 +55,8 @@ class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             setOnClickListener {
                 if (redditPost.isSelf) {
                     openPostDetails(redditPost)
+                } else if (redditPost.postHintType == PostHintType.IMAGE) {
+                    openImageDisplay(redditPost)
                 } else {
                     val customTabsIntent = CustomTabsIntent.Builder()
                             .setToolbarColor(resources.getColor(R.color.colorPrimary))
@@ -54,9 +72,18 @@ class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
     }
 
+    private fun isInternalPost(redditPost: RedditPost) =
+            redditPost.isSelf || redditPost.postHintType == PostHintType.IMAGE
+
     private fun openPostDetails(redditPost: RedditPost) {
         val bundle = Bundle()
         bundle.putString("postId", redditPost.id)
         itemView.findNavController().navigate(R.id.action_postSelected, bundle)
+    }
+
+    private fun openImageDisplay(redditPost: RedditPost) {
+        val bundle = Bundle()
+        bundle.putString("imageUrl", redditPost.url)
+        itemView.findNavController().navigate(R.id.action_displayImage, bundle)
     }
 }
