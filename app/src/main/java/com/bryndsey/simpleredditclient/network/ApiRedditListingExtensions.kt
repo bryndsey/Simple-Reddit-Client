@@ -13,7 +13,8 @@ fun ApiRedditListing.toRedditPost(): RedditPost =
                 url,
                 id,
                 isSelf,
-                createdTimeUtcSeconds?.times(TimeConstants.MILLIS_PER_SECOND))
+                createdTimeUtcSeconds?.times(TimeConstants.MILLIS_PER_SECOND),
+                if (postHint.equals("image", true)) PostHintType.IMAGE else PostHintType.OTHER)
 
 fun ApiRedditListing.toSubreddit(): Subreddit =
         Subreddit(
