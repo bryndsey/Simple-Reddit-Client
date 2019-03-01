@@ -14,7 +14,21 @@ fun ApiRedditListing.toRedditPost(): RedditPost =
                 id,
                 isSelf,
                 createdTimeUtcSeconds?.times(TimeConstants.MILLIS_PER_SECOND),
-                if (postHint.equals("image", true)) PostHintType.IMAGE else PostHintType.OTHER)
+                findPostHintTypeForString(postHint))
+
+private fun findPostHintTypeForString(postHintString: String?): PostHintType {
+    if (postHintString == null) {
+        return PostHintType.OTHER
+    }
+
+    for (value in PostHintType.values()) {
+        if (value.toString().equals(postHintString, ignoreCase = true)) {
+            return value
+        }
+    }
+
+    return PostHintType.OTHER
+}
 
 fun ApiRedditListing.toSubreddit(): Subreddit =
         Subreddit(
