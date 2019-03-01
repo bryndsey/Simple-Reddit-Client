@@ -1,5 +1,7 @@
 package com.bryndsey.simpleredditclient.data
 
+import com.bryndsey.simpleredditclient.network.PostHintType
+
 // TODO: Make most of these non-null
 data class RedditPost(
         val title: String?,
@@ -9,5 +11,6 @@ data class RedditPost(
         val url: String?,
         val id: String,
         val isSelf: Boolean,
-        val createdDateMillis: Long?
+        val createdDateMillis: Long?,
+        val postHintType: PostHintType
 )

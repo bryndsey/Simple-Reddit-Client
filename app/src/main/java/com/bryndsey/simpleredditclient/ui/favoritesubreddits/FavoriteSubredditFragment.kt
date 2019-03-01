@@ -15,7 +15,9 @@ class FavoriteSubredditFragment : BaseFragment() {
     val testFavoriteSubredditList = listOf<Subreddit>(
             Subreddit("AndroidDev", "r/AndroidDev", "Fake description", 100),
             Subreddit("DadJokes", "r/DadJokes", "Fake description", 101),
-            Subreddit("Gaming", "r/Gaming", "Fake description", 102)
+            Subreddit("Gaming", "r/Gaming", "Fake description", 102),
+            Subreddit("Pics", "r/Pics", "Fake description", 102),
+            Subreddit("Gifs", "r/gifs", "Fake description", 102)
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
