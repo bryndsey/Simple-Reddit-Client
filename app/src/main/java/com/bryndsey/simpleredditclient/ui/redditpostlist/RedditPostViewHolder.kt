@@ -55,20 +55,22 @@ class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 when {
                     redditPost.isSelf -> openPostDetails(redditPost)
                     redditPost.postHintType == PostHintType.IMAGE -> openImageDisplay(redditPost)
-                    else -> {
-                        val customTabsIntent = CustomTabsIntent.Builder()
-                                .setToolbarColor(resources.getColor(R.color.colorPrimary))
-                                .setShowTitle(true)
-                                .build()
-
-                        CustomTabsHelper.openCustomTab(itemView.context,
-                                customTabsIntent,
-                                Uri.parse(redditPost.url),
-                                WebViewFallback())
-                    }
+                    else -> launchExternalLink(redditPost)
                 }
             }
         }
+    }
+
+    private fun launchExternalLink(redditPost: RedditPost) {
+        val customTabsIntent = CustomTabsIntent.Builder()
+                .setToolbarColor(itemView.resources.getColor(R.color.colorPrimary))
+                .setShowTitle(true)
+                .build()
+
+        CustomTabsHelper.openCustomTab(itemView.context,
+                customTabsIntent,
+                Uri.parse(redditPost.url),
+                WebViewFallback())
     }
 
     private fun isInternalPost(redditPost: RedditPost) =
