@@ -52,20 +52,20 @@ class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             }
 
             setOnClickListener {
-                if (redditPost.isSelf) {
-                    openPostDetails(redditPost)
-                } else if (redditPost.postHintType == PostHintType.IMAGE) {
-                    openImageDisplay(redditPost)
-                } else {
-                    val customTabsIntent = CustomTabsIntent.Builder()
-                            .setToolbarColor(resources.getColor(R.color.colorPrimary))
-                            .setShowTitle(true)
-                            .build()
+                when {
+                    redditPost.isSelf -> openPostDetails(redditPost)
+                    redditPost.postHintType == PostHintType.IMAGE -> openImageDisplay(redditPost)
+                    else -> {
+                        val customTabsIntent = CustomTabsIntent.Builder()
+                                .setToolbarColor(resources.getColor(R.color.colorPrimary))
+                                .setShowTitle(true)
+                                .build()
 
-                    CustomTabsHelper.openCustomTab(itemView.context,
-                            customTabsIntent,
-                            Uri.parse(redditPost.url),
-                            WebViewFallback())
+                        CustomTabsHelper.openCustomTab(itemView.context,
+                                customTabsIntent,
+                                Uri.parse(redditPost.url),
+                                WebViewFallback())
+                    }
                 }
             }
         }
