@@ -1,18 +1,42 @@
 package com.bryndsey.simpleredditclient.ui.redditpostlist
 
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bryndsey.simpleredditclient.data.RedditPost
 import com.bryndsey.simpleredditclient.data.RedditPostRepository
-import io.reactivex.Single
+import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 class RedditPostListViewModel @Inject constructor(private val redditPostRepository: RedditPostRepository) :
         ViewModel() {
 
-    // TODO: The caching here is broken. Update to use LiveData
-    fun getRedditPosts(subredditName: String): Single<List<RedditPost>> {
-        return redditPostRepository.fetchRedditPosts(subredditName)
-                .onErrorReturn { emptyList() }
-                .cache()
+    private var postFetchDisposable: Disposable? = null
+
+    private val _postListLiveData = MutableLiveData<List<RedditPost>>()
+
+    val postListLiveData: LiveData<List<RedditPost>>
+        get() = _postListLiveData
+
+    fun initialize(subredditName: String) {
+        if (postFetchDisposable == null) {
+            postFetchDisposable = redditPostRepository.fetchRedditPosts(subredditName)
+                    .retry(2)
+                    .onErrorReturn { emptyList() }
+                    .subscribe({
+                        _postListLiveData.postValue(it)
+                    }, {
+                        // TODO: Show an error state when this occurs
+                        Log.e("BRYAN", "Error fetching posts for subreddit $subredditName", it)
+                    })
+        }
+    }
+
+    override fun onCleared() {
+        postFetchDisposable?.dispose()
+        postFetchDisposable = null
+
+        super.onCleared()
     }
 }
