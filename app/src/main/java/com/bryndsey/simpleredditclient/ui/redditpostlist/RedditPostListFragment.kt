@@ -4,17 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.data.RedditPost
 import com.bryndsey.simpleredditclient.di.ComponentHolder
 import com.bryndsey.simpleredditclient.di.ViewModelFactory
-import com.bryndsey.simpleredditclient.ui.BaseFragment
 import kotlinx.android.synthetic.main.reddit_post_list.*
 import javax.inject.Inject
 
-class RedditPostListFragment: BaseFragment() {
+class RedditPostListFragment: Fragment() {
 
     private val adapter = RedditPostListAdapter()
 

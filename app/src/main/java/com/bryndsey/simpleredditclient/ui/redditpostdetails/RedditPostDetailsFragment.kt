@@ -5,13 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.data.RedditPost
 import com.bryndsey.simpleredditclient.di.ComponentHolder
 import com.bryndsey.simpleredditclient.di.ViewModelFactory
-import com.bryndsey.simpleredditclient.ui.BaseFragment
 import com.bryndsey.simpleredditclient.ui.TimeDisplayFormatter
 import com.bryndsey.simpleredditclient.ui.toDisplayString
 import kotlinx.android.synthetic.main.reddit_post_details.*
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.reddit_post_overview.*
 import ru.noties.markwon.Markwon
 import javax.inject.Inject
 
-class RedditPostDetailsFragment: BaseFragment() {
+class RedditPostDetailsFragment: Fragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory<RedditPostDetailsViewModel>
 
