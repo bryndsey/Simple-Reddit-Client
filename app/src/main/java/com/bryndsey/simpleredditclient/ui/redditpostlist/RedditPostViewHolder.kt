@@ -11,6 +11,7 @@ import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.data.RedditPost
 import com.bryndsey.simpleredditclient.network.PostHintType
 import com.bryndsey.simpleredditclient.ui.TimeDisplayFormatter
+import com.bryndsey.simpleredditclient.ui.toDisplayString
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.reddit_post_overview.view.*
 import saschpe.android.customtabs.CustomTabsHelper
@@ -21,7 +22,7 @@ class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(redditPost: RedditPost) {
         with(itemView) {
             reddit_post_title.text = redditPost.title
-            reddit_post_score.text = redditPost.score.toString()
+            reddit_post_score.text = redditPost.score?.toDisplayString()
             reddit_post_comments.text = redditPost.numComments.toString() + " comments"
             if (redditPost.createdDateMillis != null) {
                 reddit_post_creation_time.text = TimeDisplayFormatter.getStringForTimeSince(redditPost.createdDateMillis)

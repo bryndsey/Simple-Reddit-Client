@@ -11,6 +11,7 @@ import com.bryndsey.simpleredditclient.data.RedditPostRepository
 import com.bryndsey.simpleredditclient.di.ComponentHolder
 import com.bryndsey.simpleredditclient.ui.BaseFragment
 import com.bryndsey.simpleredditclient.ui.TimeDisplayFormatter
+import com.bryndsey.simpleredditclient.ui.toDisplayString
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.reddit_post_details.*
 import kotlinx.android.synthetic.main.reddit_post_overview.*
@@ -46,7 +47,7 @@ class RedditPostDetailsFragment: BaseFragment() {
 
     private fun updateViewFromPost(redditPost: RedditPost) {
         reddit_post_title.text = redditPost.title
-        reddit_post_score.text = redditPost.score.toString()
+        reddit_post_score.text = redditPost.score?.toDisplayString()
         reddit_post_comments.text = redditPost.numComments.toString() + " comments"
         if (redditPost.createdDateMillis != null) {
             reddit_post_creation_time.text = TimeDisplayFormatter.getStringForTimeSince(redditPost.createdDateMillis)
