@@ -3,14 +3,14 @@ package com.bryndsey.simpleredditclient.ui.favoritesubreddits
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.ContentView
+import androidx.fragment.app.Fragment
 import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.data.Subreddit
-import com.bryndsey.simpleredditclient.ui.BaseFragment
 import com.bryndsey.simpleredditclient.ui.subredditselection.SubredditOverviewAdapter
 import kotlinx.android.synthetic.main.favorite_subreddit_view.*
 
 @ContentView(R.layout.favorite_subreddit_view)
-class FavoriteSubredditFragment : BaseFragment() {
+class FavoriteSubredditFragment : Fragment() {
 
     val testFavoriteSubredditList = listOf<Subreddit>(
             Subreddit("AndroidDev", "r/AndroidDev", "Fake description", 100),

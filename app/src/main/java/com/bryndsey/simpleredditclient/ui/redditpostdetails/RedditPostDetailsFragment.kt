@@ -5,22 +5,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.data.RedditPost
-import com.bryndsey.simpleredditclient.data.RedditPostRepository
 import com.bryndsey.simpleredditclient.di.ComponentHolder
-import com.bryndsey.simpleredditclient.ui.BaseFragment
+import com.bryndsey.simpleredditclient.di.ViewModelFactory
 import com.bryndsey.simpleredditclient.ui.TimeDisplayFormatter
 import com.bryndsey.simpleredditclient.ui.toDisplayString
-import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.reddit_post_details.*
 import kotlinx.android.synthetic.main.reddit_post_overview.*
 import ru.noties.markwon.Markwon
 import javax.inject.Inject
 
-class RedditPostDetailsFragment: BaseFragment() {
+class RedditPostDetailsFragment: Fragment() {
 
-    @Inject lateinit var repository: RedditPostRepository
+    @Inject lateinit var viewModelFactory: ViewModelFactory<RedditPostDetailsViewModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,14 +36,15 @@ class RedditPostDetailsFragment: BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val disposable = repository.getPostById(arguments?.getString("postId"))
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { updateViewFromPost(it) },
-                        { Log.e("BRYAN", "Error finding cached post", it) }
-                )
+        val viewModel = ViewModelProviders.of(this, viewModelFactory)
+                .get(RedditPostDetailsViewModel::class.java)
 
-        addSubscription(disposable)
+        val postId = arguments?.getString("postId") ?: ""
+        viewModel.initialize(postId)
+
+        viewModel.postLiveData.observe(viewLifecycleOwner, Observer {
+            updateViewFromPost(it)
+        })
     }
 
     private fun updateViewFromPost(redditPost: RedditPost) {
