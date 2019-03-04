@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         navController = findNavController(R.id.nav_host_fragment)
 
-        if (FeatureFlags.UseHardcodedSubreddits) {
+        if (savedInstanceState == null && FeatureFlags.UseHardcodedSubreddits) {
             navController.navigate(R.id.action_showHardcodedSubreddit)
         }
 
