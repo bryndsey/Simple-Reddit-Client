@@ -50,7 +50,7 @@ class RedditPostDetailsFragment: Fragment() {
     private fun updateViewFromPost(redditPost: RedditPost) {
         reddit_post_title.text = redditPost.title
         reddit_post_score.text = redditPost.score?.toDisplayString()
-        reddit_post_comments.text = redditPost.numComments.toString() + " comments"
+        reddit_post_comments.text = redditPost.numComments.toString()
         if (redditPost.createdDateMillis != null) {
             reddit_post_creation_time.text = TimeDisplayFormatter.getStringForTimeSince(redditPost.createdDateMillis)
             reddit_post_creation_time.visibility = View.VISIBLE
