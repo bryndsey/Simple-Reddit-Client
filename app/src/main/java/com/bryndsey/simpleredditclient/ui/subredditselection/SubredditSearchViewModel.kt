@@ -6,10 +6,9 @@ import androidx.lifecycle.ViewModel
 import com.bryndsey.simpleredditclient.data.Subreddit
 import com.bryndsey.simpleredditclient.data.SubredditSearchUseCase
 import io.reactivex.disposables.CompositeDisposable
-import javax.inject.Inject
 
-class SubredditSearchViewModel
-@Inject constructor(private val subredditSearchUseCase: SubredditSearchUseCase) : ViewModel() {
+class SubredditSearchViewModel(private val subredditSearchUseCase: SubredditSearchUseCase) :
+        ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 

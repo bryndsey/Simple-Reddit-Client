@@ -7,10 +7,8 @@ import androidx.lifecycle.ViewModel
 import com.bryndsey.simpleredditclient.data.RedditPost
 import com.bryndsey.simpleredditclient.data.RedditPostRepository
 import io.reactivex.disposables.Disposable
-import javax.inject.Inject
 
-class RedditPostDetailsViewModel @Inject constructor(private val repository: RedditPostRepository) :
-        ViewModel() {
+class RedditPostDetailsViewModel(private val repository: RedditPostRepository) : ViewModel() {
 
     private var postRetrievalDisposable: Disposable? = null
 

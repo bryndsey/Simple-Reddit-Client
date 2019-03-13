@@ -6,28 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.data.RedditPost
-import com.bryndsey.simpleredditclient.di.ComponentHolder
-import com.bryndsey.simpleredditclient.di.ViewModelFactory
 import kotlinx.android.synthetic.main.reddit_post_list.*
-import javax.inject.Inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class RedditPostListFragment: Fragment() {
 
     private val adapter = RedditPostListAdapter()
 
-    @Inject lateinit var viewModelFactory: ViewModelFactory<RedditPostListViewModel>
-    private lateinit var viewModel: RedditPostListViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        ComponentHolder.applicationComponent.inject(this)
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory)
-                .get(RedditPostListViewModel::class.java)
-    }
+    private val postListViewModel: RedditPostListViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.reddit_post_list, container, false)
@@ -38,11 +26,11 @@ class RedditPostListFragment: Fragment() {
 
         // TODO: Define a better fallback if stuff is null
         val subredditName = arguments?.getString("subredditName") ?: ""
-        viewModel.initialize(subredditName)
+        postListViewModel.initialize(subredditName)
 
         post_list.adapter = adapter
 
-        viewModel.postListLiveData.observe(viewLifecycleOwner, Observer {
+        postListViewModel.postListLiveData.observe(viewLifecycleOwner, Observer {
             updatePosts(it)
         })
     }
