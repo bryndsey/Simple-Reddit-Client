@@ -5,11 +5,8 @@ import com.bryndsey.simpleredditclient.network.toRedditPost
 import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class RedditPostRepository @Inject constructor(val redditService: RedditService) {
+class RedditPostRepository(val redditService: RedditService) {
 
     private val postDataSet = mutableSetOf<RedditPost>()
 
