@@ -35,6 +35,9 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.2-alpha01'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.2-alpha01'
 
+    testImplementation "org.mockito:mockito-inline:2.25.1"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+
     implementation 'org.koin:koin-android-viewmodel:1.0.2'
 
     implementation 'io.reactivex.rxjava2:rxjava:2.1.6'
