@@ -6,7 +6,7 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 
-class RedditPostRepository(val redditService: RedditService) {
+class RedditPostRepository(private val redditService: RedditService) {
 
     private val postDataSet = mutableSetOf<RedditPost>()
 
