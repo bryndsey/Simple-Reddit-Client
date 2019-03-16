@@ -54,7 +54,7 @@ dependencies {
     def lifecycle_version = '2.1.0-alpha03'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
-    implementation 'ru.noties:markwon:1.0.1'
+    implementation 'ru.noties:markwon:2.0.2'
 
     implementation 'saschpe.android:customtabs:2.0.0'
 
