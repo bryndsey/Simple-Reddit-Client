@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Simple Reddit Client</string>
 
+    <string name="search_subreddits_screen_title">Search Subreddits</string>
+    <string name="favorite_subreddits_screen_title">Favorite Subreddits</string>
     <string name="reddit_post_details_screen_title">Post Details</string>
     <string name="image_screen_title">Image</string>
 

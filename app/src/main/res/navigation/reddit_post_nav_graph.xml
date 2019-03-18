@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/subredditSearchFragment"
         android:name="com.bryndsey.simpleredditclient.ui.subredditselection.SubredditSearchFragment"
-        android:label="Search Subreddits">
+        android:label="@string/search_subreddits_screen_title">
         <action
             android:id="@+id/action_subredditSelected"
             app:destination="@id/redditPostListFragment"
@@ -50,7 +50,7 @@
     <fragment
         android:id="@+id/favoriteSubredditFragment"
         android:name="com.bryndsey.simpleredditclient.ui.favoritesubreddits.FavoriteSubredditFragment"
-        android:label="Favorite Subreddits">
+        android:label="@string/favorite_subreddits_screen_title">
         <action
             android:id="@+id/action_subredditSelected"
             app:destination="@id/redditPostListFragment"
