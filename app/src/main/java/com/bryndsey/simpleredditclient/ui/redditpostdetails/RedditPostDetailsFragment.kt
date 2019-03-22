@@ -15,7 +15,6 @@ import com.bryndsey.simpleredditclient.ui.redditpostdetails.comments.CommentItem
 import com.bryndsey.simpleredditclient.ui.toDisplayString
 import com.xwray.groupie.ExpandableGroup
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.reddit_post_details.*
 import kotlinx.android.synthetic.main.reddit_post_overview.*
@@ -30,6 +29,9 @@ class RedditPostDetailsFragment: Fragment() {
             Comment("Test Comment 3", 100),
             Comment("Test Comment 4", 1000)
     )
+
+    private val parentComment1 = Comment("parentComment1", 0, testCommentList)
+    private val grandparentComment1 = Comment("grandparentComment1", 100000, listOf(parentComment1))
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.reddit_post_details, container, false)
@@ -48,13 +50,11 @@ class RedditPostDetailsFragment: Fragment() {
         })
 
         val groupAdapter = GroupAdapter<ViewHolder>()
-        val commentItems = testCommentList.map { CommentItem(it) }
 
-        val commentSection = Section(commentItems)
-        val testExpandableGroup = ExpandableGroup(commentItems[0])
-        testExpandableGroup.addAll(commentItems)
-//        groupAdapter.addAll(commentItems)
-        groupAdapter.add(testExpandableGroup)
+        val commentGroups = buildComments(listOf(grandparentComment1))
+
+        groupAdapter.addAll(commentGroups)
+
         redditPostComments.adapter = groupAdapter
     }
 
@@ -75,5 +75,26 @@ class RedditPostDetailsFragment: Fragment() {
         }
 
         Markwon.setMarkdown(reddit_post_text, redditPost.text.orEmpty())
+    }
+
+    fun buildComments(commentList : List<Comment>) : List<ExpandableGroup> {
+
+        /*
+        Steps:
+        1. Make a comment item for each comment
+        2. Add that comment to an expandable group
+        3. Go through each child and repeat steps 1 - 3
+         */
+
+        // TODO: Use a sequence?
+        return commentList.map { comment ->
+            val groupItem = CommentItem(comment)
+            val group = ExpandableGroup(groupItem, true)
+            val childCommentGroups = buildComments(comment.childComments)
+
+            group.addAll(childCommentGroups)
+
+            group
+        }
     }
 }
