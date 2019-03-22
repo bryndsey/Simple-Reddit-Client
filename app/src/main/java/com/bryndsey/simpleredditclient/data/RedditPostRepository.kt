@@ -23,7 +23,7 @@ class RedditPostRepository(private val redditService: RedditService) {
 
     private fun handleRedditPostFetch(fetchSingle: Single<ApiRedditResponse>): Single<List<RedditPost>> {
         return fetchSingle
-                .retry()
+                .retry(2)
                 .map {
                     it.data.posts.map { post -> post.data.toRedditPost() }
                 }

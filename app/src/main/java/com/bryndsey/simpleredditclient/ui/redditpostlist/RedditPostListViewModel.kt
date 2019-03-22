@@ -26,7 +26,6 @@ class RedditPostListViewModel(private val redditPostRepository: RedditPostReposi
         if (postFetchDisposable == null) {
             this.subredditName = subredditName
             postFetchDisposable = redditPostRepository.fetchRedditPosts(subredditName)
-                    .retry(2)
                     .onErrorReturn { emptyList() }
                     .subscribe({
                         postList = it.toMutableList()
@@ -46,7 +45,6 @@ class RedditPostListViewModel(private val redditPostRepository: RedditPostReposi
         val lastPostFullname = postList.last().fullname
         morePostFetchDisposable = redditPostRepository.fetchMoreRedditPosts(subredditName, lastPostFullname)
                 // FIXME: A lot of this is largely duplicated from the initial fetch
-                .retry(2)
                 .onErrorReturn { emptyList() }
                 .doAfterTerminate {
                     // Reset disposable so we know it's safe to fetch more posts
