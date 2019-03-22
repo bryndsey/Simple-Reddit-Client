@@ -3,6 +3,7 @@ package com.bryndsey.simpleredditclient.data
 import com.bryndsey.simpleredditclient.data.TimeConstants.MILLIS_PER_SECOND
 import com.bryndsey.simpleredditclient.network.*
 import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.anyOrNull
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
 import io.reactivex.plugins.RxJavaPlugins
@@ -43,6 +44,7 @@ class RedditPostRepositoryTest {
         val testNumComments = 12345
         val testUrl = "testUrl"
         val testId = "testId"
+        val testFullname = "testFullname"
         val testIsSelf = true
         val testCreatedTimeUtcSeconds = 123456789L
         val testPostHint = "testHint"
@@ -59,6 +61,7 @@ class RedditPostRepositoryTest {
                                                 numComments = testNumComments,
                                                 url = testUrl,
                                                 id = testId,
+                                                fullname = testFullname,
                                                 isSelf = testIsSelf,
                                                 createdTimeUtcSeconds = testCreatedTimeUtcSeconds,
                                                 postHint = testPostHint,
@@ -72,7 +75,7 @@ class RedditPostRepositoryTest {
                 )
         )
 
-        whenever(mockRedditService.getSubredditPosts(any()))
+        whenever(mockRedditService.getSubredditPosts(any(), anyOrNull()))
                 .thenReturn(Single.just(testApiRedditResponse))
 
         val expectedRedditPost = RedditPost(
@@ -82,6 +85,7 @@ class RedditPostRepositoryTest {
                 numComments = testNumComments,
                 url = testUrl,
                 id = testId,
+                fullname = testFullname,
                 isSelf = testIsSelf,
                 createdDateMillis = testCreatedTimeUtcSeconds * MILLIS_PER_SECOND,
                 postHintType = PostHintType.OTHER
