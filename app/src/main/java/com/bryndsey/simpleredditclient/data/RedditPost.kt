@@ -10,6 +10,7 @@ data class RedditPost(
         val numComments: Int?,
         val url: String?,
         val id: String,
+        val fullname: String,
         val isSelf: Boolean,
         val createdDateMillis: Long?,
         val postHintType: PostHintType

@@ -12,6 +12,7 @@ fun ApiRedditListing.toRedditPost(): RedditPost =
                 numComments,
                 url,
                 id,
+                fullname,
                 isSelf,
                 createdTimeUtcSeconds?.times(TimeConstants.MILLIS_PER_SECOND),
                 findPostHintTypeForString(postHint))
