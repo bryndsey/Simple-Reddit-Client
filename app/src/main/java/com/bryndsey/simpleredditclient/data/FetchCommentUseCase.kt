@@ -29,7 +29,10 @@ class FetchCommentUseCase(private val redditService: RedditService) {
 
         return listings.map { listingHolder ->
             val listing = listingHolder.data
+
+            // Convert comment replies recursively
             val replies = convertResponseToComments(listing.replies)
+            
             Comment(
                     text = listing.commentText,
                     score = listing.score,

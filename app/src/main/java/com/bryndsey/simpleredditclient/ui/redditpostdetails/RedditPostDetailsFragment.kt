@@ -79,20 +79,12 @@ class RedditPostDetailsFragment: Fragment() {
         Markwon.setMarkdown(reddit_post_text, redditPost.text.orEmpty())
     }
 
-    fun buildComments(commentList : List<Comment>, commentDepth : Int = 0) : List<ExpandableGroup> {
-
-        /*
-        Steps:
-        1. Make a comment item for each comment
-        2. Add that comment to an expandable group
-        3. Go through each child and repeat steps 1 - 3
-         */
-
-        // TODO: Use a sequence?
+    private fun buildComments(commentList : List<Comment>, commentDepth : Int = 0) : List<ExpandableGroup> {
         return commentList.map { comment ->
             val groupItem = CommentItem(comment, commentDepth)
             val group = ExpandableGroup(groupItem, true)
 
+            // Build comment groups recursively
             val childCommentGroups = buildComments(comment.replies, commentDepth + 1)
 
             group.addAll(childCommentGroups)
