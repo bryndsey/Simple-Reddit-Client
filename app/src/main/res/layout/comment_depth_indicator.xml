@@ -3,7 +3,7 @@
     android:layout_width="1dp"
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
-    android:background="@color/iconTint"
+    android:background="@color/black33PercentAlpha"
     android:layout_height="match_parent">
 
 </View>

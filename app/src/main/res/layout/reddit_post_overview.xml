@@ -41,7 +41,7 @@
         android:layout_marginBottom="12dp"
         android:drawableStart="@drawable/comments"
         android:drawablePadding="2dp"
-        android:drawableTint="@color/iconTint"
+        android:drawableTint="@color/black33PercentAlpha"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
         android:layout_marginStart="16dp"
         android:drawableStart="@drawable/post_time"
         android:drawablePadding="2dp"
-        android:drawableTint="@color/iconTint"
+        android:drawableTint="@color/black33PercentAlpha"
         android:gravity="center" />
 
     <TextView
