@@ -11,6 +11,7 @@ import com.xwray.groupie.ExpandableItem
 import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.reddit_comment.view.*
+import ru.noties.markwon.Markwon
 
 class CommentItem(private val comment: Comment, private val commentDepth: Int) : Item(), ExpandableItem {
 
@@ -33,7 +34,7 @@ class CommentItem(private val comment: Comment, private val commentDepth: Int) :
             }
         }
 
-        itemView.commentText.text = comment.text
+        Markwon.setMarkdown(itemView.commentText, comment.text.orEmpty())
         itemView.commentScore.text = comment.score.toString()
         if (comment.createdDateMillis != null) {
             itemView.commentTimeDisplay.text = getStringForTimeSince(comment.createdDateMillis)
