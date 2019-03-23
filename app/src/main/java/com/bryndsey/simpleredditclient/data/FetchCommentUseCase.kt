@@ -37,6 +37,7 @@ class FetchCommentUseCase(private val redditService: RedditService) {
             Comment(
                     text = listing.commentText,
                     score = listing.score,
+                    authorUsername = listing.authorUsername,
                     createdDateMillis = listing.createdTimeUtcSeconds?.times(MILLIS_PER_SECOND),
                     replies = replies
             )
