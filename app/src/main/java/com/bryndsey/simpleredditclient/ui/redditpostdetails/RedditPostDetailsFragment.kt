@@ -77,7 +77,7 @@ class RedditPostDetailsFragment: Fragment() {
         Markwon.setMarkdown(reddit_post_text, redditPost.text.orEmpty())
     }
 
-    fun buildComments(commentList : List<Comment>) : List<ExpandableGroup> {
+    fun buildComments(commentList : List<Comment>, commentDepth : Int = 0) : List<ExpandableGroup> {
 
         /*
         Steps:
@@ -88,9 +88,10 @@ class RedditPostDetailsFragment: Fragment() {
 
         // TODO: Use a sequence?
         return commentList.map { comment ->
-            val groupItem = CommentItem(comment)
+            val groupItem = CommentItem(comment, commentDepth)
             val group = ExpandableGroup(groupItem, true)
-            val childCommentGroups = buildComments(comment.childComments)
+
+            val childCommentGroups = buildComments(comment.childComments, commentDepth + 1)
 
             group.addAll(childCommentGroups)
 

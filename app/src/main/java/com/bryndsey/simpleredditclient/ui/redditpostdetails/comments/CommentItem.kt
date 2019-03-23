@@ -1,5 +1,6 @@
 package com.bryndsey.simpleredditclient.ui.redditpostdetails.comments
 
+import android.view.LayoutInflater
 import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.data.Comment
 import com.xwray.groupie.ExpandableGroup
@@ -8,14 +9,30 @@ import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.reddit_comment.view.*
 
-class CommentItem(private val comment: Comment) : Item(), ExpandableItem {
+class CommentItem(private val comment: Comment, private val commentDepth: Int) : Item(), ExpandableItem {
 
     private var expandableGroup: ExpandableGroup? = null
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.commentText.text = comment.text
-        viewHolder.itemView.commentScore.text = comment.score.toString()
-        viewHolder.itemView.setOnClickListener {
+        val itemView = viewHolder.itemView
+
+        // Remove all indicators in case of recycled view
+        itemView.depthIndicatorHolder.removeAllViews()
+        if (commentDepth > 0) {
+            for (i in 1..commentDepth) {
+                val indicatorView =
+                        LayoutInflater.from(itemView.context).inflate(
+                                R.layout.comment_depth_indicator,
+                                itemView.depthIndicatorHolder,
+                                false)
+
+                itemView.depthIndicatorHolder.addView(indicatorView)
+            }
+        }
+
+        itemView.commentText.text = comment.text
+        itemView.commentScore.text = comment.score.toString()
+        itemView.setOnClickListener {
             expandableGroup?.onToggleExpanded()
         }
     }
