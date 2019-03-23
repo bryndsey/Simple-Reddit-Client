@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -66,7 +68,13 @@ class RedditPostDetailsFragment: Fragment() {
             Log.d("BRYAN", "Clicked comments. Opening url " + redditPost.url)
         }
 
-        Markwon.setMarkdown(reddit_post_text, redditPost.text.orEmpty())
+        if (redditPost.text.isNullOrEmpty()) {
+            reddit_post_text.visibility = GONE
+            reddit_post_text.text = null
+        } else {
+            Markwon.setMarkdown(reddit_post_text, redditPost.text.orEmpty())
+            reddit_post_text.visibility = VISIBLE
+        }
     }
 
     private fun buildComments(commentList : List<Comment>, commentDepth : Int = 0) : List<ExpandableGroup> {
