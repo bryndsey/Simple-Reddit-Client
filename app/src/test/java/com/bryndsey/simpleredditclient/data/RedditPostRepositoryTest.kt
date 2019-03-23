@@ -64,6 +64,7 @@ class RedditPostRepositoryTest {
                                                 fullname = testFullname,
                                                 isSelf = testIsSelf,
                                                 createdTimeUtcSeconds = testCreatedTimeUtcSeconds,
+                                                authorUsername = null,
                                                 postHint = testPostHint,
                                                 displayName = null,
                                                 displayNamePrefixed = null,
