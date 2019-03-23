@@ -1,8 +1,11 @@
 package com.bryndsey.simpleredditclient.ui.redditpostdetails.comments
 
 import android.view.LayoutInflater
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.data.Comment
+import com.bryndsey.simpleredditclient.ui.TimeDisplayFormatter.getStringForTimeSince
 import com.xwray.groupie.ExpandableGroup
 import com.xwray.groupie.ExpandableItem
 import com.xwray.groupie.kotlinandroidextensions.Item
@@ -32,6 +35,13 @@ class CommentItem(private val comment: Comment, private val commentDepth: Int) :
 
         itemView.commentText.text = comment.text
         itemView.commentScore.text = comment.score.toString()
+        if (comment.createdDateMillis != null) {
+            itemView.commentTimeDisplay.text = getStringForTimeSince(comment.createdDateMillis)
+            itemView.commentTimeDisplay.visibility = VISIBLE
+        } else {
+            itemView.commentTimeDisplay.visibility = GONE
+            itemView.commentTimeDisplay.text = null
+        }
         itemView.setOnClickListener {
             expandableGroup?.onToggleExpanded()
         }
