@@ -14,4 +14,7 @@ interface RedditService {
 
     @GET("subreddits/search.json")
     fun searchSubreddits(@Query("q") subredditName: String): Single<ApiRedditResponse>
+
+    @GET("comments/{postId}/.json")
+    fun getPostComments(@Path("postId") postId: String): Single<List<ApiRedditResponse>>
 }
