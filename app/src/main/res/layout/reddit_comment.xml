@@ -36,7 +36,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:textAppearance="@android:style/TextAppearance.Material.Body2"
-        app:layout_constraintBottom_toBottomOf="@id/commentText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/commentText"
         app:layout_constraintTop_toTopOf="@id/commentText"
