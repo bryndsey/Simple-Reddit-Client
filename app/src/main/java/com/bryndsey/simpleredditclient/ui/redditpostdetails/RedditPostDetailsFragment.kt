@@ -23,16 +23,6 @@ import ru.noties.markwon.Markwon
 
 class RedditPostDetailsFragment: Fragment() {
 
-    private val testCommentList = listOf(
-            Comment("Test Comment 1", 1),
-            Comment("Test Comment 2", 10),
-            Comment("Test Comment 3", 100),
-            Comment("Test Comment 4", 1000)
-    )
-
-    private val parentComment1 = Comment("parentComment1", 0, testCommentList)
-    private val grandparentComment1 = Comment("grandparentComment1", 100000, listOf(parentComment1))
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.reddit_post_details, container, false)
     }
