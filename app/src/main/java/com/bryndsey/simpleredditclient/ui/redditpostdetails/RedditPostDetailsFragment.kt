@@ -51,9 +51,11 @@ class RedditPostDetailsFragment: Fragment() {
 
         val groupAdapter = GroupAdapter<ViewHolder>()
 
-        val commentGroups = buildComments(listOf(grandparentComment1))
+        viewModel.commentsLiveData.observe(viewLifecycleOwner, Observer {
+            val commentGroups = buildComments(it)
+            groupAdapter.addAll(commentGroups)
 
-        groupAdapter.addAll(commentGroups)
+        })
 
         redditPostComments.adapter = groupAdapter
     }
