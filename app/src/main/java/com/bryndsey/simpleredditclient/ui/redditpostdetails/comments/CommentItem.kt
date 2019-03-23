@@ -6,6 +6,7 @@ import android.view.View.VISIBLE
 import com.bryndsey.simpleredditclient.R
 import com.bryndsey.simpleredditclient.data.Comment
 import com.bryndsey.simpleredditclient.ui.TimeDisplayFormatter.getStringForTimeSince
+import com.bryndsey.simpleredditclient.ui.toDisplayString
 import com.xwray.groupie.ExpandableGroup
 import com.xwray.groupie.ExpandableItem
 import com.xwray.groupie.kotlinandroidextensions.Item
@@ -35,7 +36,7 @@ class CommentItem(private val comment: Comment, private val commentDepth: Int) :
         }
 
         Markwon.setMarkdown(itemView.commentText, comment.text.orEmpty())
-        itemView.commentScore.text = comment.score.toString()
+        itemView.commentScore.text = comment.score?.toDisplayString()
         if (comment.createdDateMillis != null) {
             itemView.commentTimeDisplay.text = getStringForTimeSince(comment.createdDateMillis)
             itemView.commentTimeDisplay.visibility = VISIBLE
