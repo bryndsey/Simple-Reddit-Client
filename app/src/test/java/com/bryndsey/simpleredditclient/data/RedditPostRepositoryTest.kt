@@ -68,7 +68,9 @@ class RedditPostRepositoryTest {
                                                 displayName = null,
                                                 displayNamePrefixed = null,
                                                 shortDescription = null,
-                                                subscriberCount = null
+                                                subscriberCount = null,
+                                                commentText = null,
+                                                replies = null
                                         )
                                 )
                         )

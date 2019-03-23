@@ -9,7 +9,7 @@ import org.koin.dsl.module.module
 val viewModelModule = module {
     viewModel { RedditPostListViewModel(get()) }
 
-    viewModel { RedditPostDetailsViewModel(get()) }
+    viewModel { RedditPostDetailsViewModel(get(), get()) }
 
     viewModel { SubredditSearchViewModel(get()) }
 }
