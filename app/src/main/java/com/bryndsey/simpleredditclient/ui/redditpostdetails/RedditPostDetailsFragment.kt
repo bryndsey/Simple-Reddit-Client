@@ -91,7 +91,7 @@ class RedditPostDetailsFragment: Fragment() {
             val groupItem = CommentItem(comment, commentDepth)
             val group = ExpandableGroup(groupItem, true)
 
-            val childCommentGroups = buildComments(comment.childComments, commentDepth + 1)
+            val childCommentGroups = buildComments(comment.replies, commentDepth + 1)
 
             group.addAll(childCommentGroups)
 
