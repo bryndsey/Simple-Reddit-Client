@@ -28,6 +28,12 @@
             android:textAppearance="@android:style/TextAppearance.Material.Body1"
             tools:text="This is the post body. It might be really long and cause the view to need to scroll." />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/black33PercentAlpha"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/redditPostComments"
             android:layout_width="match_parent"
