@@ -44,6 +44,15 @@ class CommentItem(private val comment: Comment, private val commentDepth: Int) :
             itemView.commentTimeDisplay.visibility = GONE
             itemView.commentTimeDisplay.text = null
         }
+
+        if (comment.authorUsername == null) {
+            itemView.authorUsernameDisplay.visibility = GONE
+            itemView.authorUsernameDisplay.text = null
+        } else {
+            itemView.authorUsernameDisplay.text = comment.authorUsername
+            itemView.authorUsernameDisplay.visibility = VISIBLE
+        }
+
         itemView.setOnClickListener {
             expandableGroup?.onToggleExpanded()
         }
