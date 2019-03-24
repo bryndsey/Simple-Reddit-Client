@@ -1,5 +1,6 @@
 package com.bryndsey.simpleredditclient.data
 
+import com.bryndsey.simpleredditclient.data.TimeConstants.MILLIS_PER_SECOND
 import com.bryndsey.simpleredditclient.network.ApiRedditResponse
 import com.bryndsey.simpleredditclient.network.RedditService
 import io.reactivex.Single
@@ -36,6 +37,8 @@ class FetchCommentUseCase(private val redditService: RedditService) {
             Comment(
                     text = listing.commentText,
                     score = listing.score,
+                    authorUsername = listing.authorUsername,
+                    createdDateMillis = listing.createdTimeUtcSeconds?.times(MILLIS_PER_SECOND),
                     replies = replies
             )
         }

@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -22,16 +24,6 @@ import org.koin.android.viewmodel.ext.android.getViewModel
 import ru.noties.markwon.Markwon
 
 class RedditPostDetailsFragment: Fragment() {
-
-    private val testCommentList = listOf(
-            Comment("Test Comment 1", 1),
-            Comment("Test Comment 2", 10),
-            Comment("Test Comment 3", 100),
-            Comment("Test Comment 4", 1000)
-    )
-
-    private val parentComment1 = Comment("parentComment1", 0, testCommentList)
-    private val grandparentComment1 = Comment("grandparentComment1", 100000, listOf(parentComment1))
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.reddit_post_details, container, false)
@@ -76,7 +68,13 @@ class RedditPostDetailsFragment: Fragment() {
             Log.d("BRYAN", "Clicked comments. Opening url " + redditPost.url)
         }
 
-        Markwon.setMarkdown(reddit_post_text, redditPost.text.orEmpty())
+        if (redditPost.text.isNullOrEmpty()) {
+            reddit_post_text.visibility = GONE
+            reddit_post_text.text = null
+        } else {
+            Markwon.setMarkdown(reddit_post_text, redditPost.text.orEmpty())
+            reddit_post_text.visibility = VISIBLE
+        }
     }
 
     private fun buildComments(commentList : List<Comment>, commentDepth : Int = 0) : List<ExpandableGroup> {
