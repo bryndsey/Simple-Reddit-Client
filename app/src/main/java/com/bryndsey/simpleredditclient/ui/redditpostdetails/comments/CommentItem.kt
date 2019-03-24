@@ -57,7 +57,7 @@ class CommentItem(private val comment: Comment, private val commentDepth: Int) :
             itemView.authorUsernameDisplay.visibility = VISIBLE
         }
 
-        itemView.setOnClickListener {
+        itemView.expandTouchTarget.setOnClickListener {
             expandableGroup?.onToggleExpanded()
 
             setExpandCommentsPromptVisibility()
