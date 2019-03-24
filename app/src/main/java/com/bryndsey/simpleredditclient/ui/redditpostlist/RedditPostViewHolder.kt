@@ -2,7 +2,6 @@ package com.bryndsey.simpleredditclient.ui.redditpostlist
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.navigation.findNavController
@@ -49,7 +48,7 @@ class RedditPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             reddit_post_link_indicator.visibility = linkVisibility
 
             reddit_post_comments.setOnClickListener {
-                Log.d("BRYAN", "Clicked comments. Opening url " + redditPost.url)
+                openPostDetails(redditPost)
             }
 
             setOnClickListener {
