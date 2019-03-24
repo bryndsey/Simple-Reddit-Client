@@ -63,7 +63,6 @@
         android:layout_marginStart="8dp"
         android:drawableStart="@drawable/post_time"
         android:drawablePadding="2dp"
-        android:drawableTint="@color/black33PercentAlpha"
         android:textAppearance="@android:style/TextAppearance.Material.Caption"
         app:layout_constraintBottom_toBottomOf="@+id/authorUsernameDisplay"
         app:layout_constraintStart_toEndOf="@+id/authorUsernameDisplay"
