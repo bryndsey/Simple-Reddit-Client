@@ -18,7 +18,11 @@ class CommentItem(private val comment: Comment, private val commentDepth: Int) :
 
     private var expandableGroup: ExpandableGroup? = null
 
+    private var viewHolder: ViewHolder? = null
+
     override fun bind(viewHolder: ViewHolder, position: Int) {
+        this.viewHolder = viewHolder
+
         val itemView = viewHolder.itemView
 
         // Remove all indicators in case of recycled view
@@ -55,6 +59,23 @@ class CommentItem(private val comment: Comment, private val commentDepth: Int) :
 
         itemView.setOnClickListener {
             expandableGroup?.onToggleExpanded()
+
+            setExpandCommentsPromptVisibility()
+        }
+
+        setExpandCommentsPromptVisibility()
+    }
+
+    private fun setExpandCommentsPromptVisibility() {
+        expandableGroup?.run {
+
+            val visibility = if (comment.replies.isEmpty() || isExpanded) {
+                GONE
+            } else {
+                VISIBLE
+            }
+
+            viewHolder?.itemView?.tapToExpandPrompt?.visibility = visibility
         }
     }
 

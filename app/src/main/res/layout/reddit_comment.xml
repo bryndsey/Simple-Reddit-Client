@@ -13,7 +13,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/commentText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/commentText"
@@ -67,4 +69,16 @@
         app:layout_constraintStart_toEndOf="@+id/authorUsernameDisplay"
         app:layout_constraintTop_toTopOf="@+id/authorUsernameDisplay"
         tools:text="7h" />
+
+    <TextView
+        android:id="@+id/tapToExpandPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hidden_replies_indicator_text"
+        android:textColor="@color/colorAccent"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        app:layout_constraintBottom_toBottomOf="@+id/authorUsernameDisplay"
+        app:layout_constraintEnd_toEndOf="@+id/commentScore"
+        app:layout_constraintTop_toTopOf="@+id/authorUsernameDisplay" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

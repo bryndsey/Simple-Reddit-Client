@@ -7,4 +7,6 @@
     <string name="image_screen_title">Image</string>
 
     <string name="subreddit_search_hint">Search for a subreddit</string>
+
+    <string name="hidden_replies_indicator_text">Tap to show replies</string>
 </resources>
